@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  backend:
+    build: ./backend
+    command: >
+      sh -c " ./wait-for-it.sh db:5432 -- \ alembic upgrade head && python app/initial_data.py && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload "
+    volumes:
+      - ./backend:/app
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      WATCHPACK_POLLING: "true"
+
+volumes:
+  postgres_data:
