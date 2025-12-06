@@ -43,9 +43,9 @@ export default function ExpensesPage() {
 
     return (
         <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">Expenses</h2>
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Expenses</h2>
 
-            <Card title="Log Expense">
+            <Card title="Log Expense" className="border-neon-pink/20">
                 <form onSubmit={handleCreate} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
                     <Input
                         label="Description"
@@ -66,27 +66,27 @@ export default function ExpensesPage() {
                         onChange={e => setNewExpense({ ...newExpense, amount: parseFloat(e.target.value) })}
                         required
                     />
-                    <Button type="submit">Log Expense</Button>
+                    <Button type="submit" variant="danger">Log Expense</Button>
                 </form>
             </Card>
 
-            <div className="bg-white shadow overflow-hidden sm:rounded-md">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+            <div className="bg-black/40 backdrop-blur-md shadow overflow-hidden sm:rounded-lg border border-white/10">
+                <table className="min-w-full divide-y divide-white/10">
+                    <thead className="bg-white/5">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Description</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Category</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Amount</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Date</th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="divide-y divide-white/10">
                         {expenses.map((expense) => (
-                            <tr key={expense.id}>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{expense.description}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{expense.category}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${expense.amount}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(expense.created_at).toLocaleString()}</td>
+                            <tr key={expense.id} className="hover:bg-white/5 transition-colors">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{expense.description}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">{expense.category}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-neon-pink font-mono">${expense.amount}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">{new Date(expense.created_at).toLocaleString()}</td>
                             </tr>
                         ))}
                     </tbody>

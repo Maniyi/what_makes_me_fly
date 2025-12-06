@@ -46,9 +46,9 @@ export default function PaymentsPage() {
 
     return (
         <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">Payments</h2>
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Payments</h2>
 
-            <Card title="Record Payment">
+            <Card title="Record Payment" className="border-neon-blue/20">
                 <form onSubmit={handleCreate} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
                     <Input
                         label="Amount"
@@ -59,15 +59,15 @@ export default function PaymentsPage() {
                         required
                     />
                     <div className="w-full">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Method</label>
+                        <label className="block text-sm font-medium text-gray-200 mb-1">Method</label>
                         <select
-                            className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="flex h-10 w-full rounded-lg border border-white/20 bg-black/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
                             value={newPayment.method}
                             onChange={e => setNewPayment({ ...newPayment, method: e.target.value })}
                         >
-                            <option value="cash">Cash</option>
-                            <option value="card">Card</option>
-                            <option value="online">Online</option>
+                            <option value="cash" className="text-black">Cash</option>
+                            <option value="card" className="text-black">Card</option>
+                            <option value="online" className="text-black">Online</option>
                         </select>
                     </div>
                     <Input
@@ -80,23 +80,23 @@ export default function PaymentsPage() {
                 </form>
             </Card>
 
-            <div className="bg-white shadow overflow-hidden sm:rounded-md">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+            <div className="bg-black/40 backdrop-blur-md shadow overflow-hidden sm:rounded-lg border border-white/10">
+                <table className="min-w-full divide-y divide-white/10">
+                    <thead className="bg-white/5">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Method</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">ID</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Amount</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Method</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Date</th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="divide-y divide-white/10">
                         {payments.map((payment) => (
-                            <tr key={payment.id}>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#{payment.id}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${payment.amount}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize">{payment.method}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(payment.created_at).toLocaleString()}</td>
+                            <tr key={payment.id} className="hover:bg-white/5 transition-colors">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">#{payment.id}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-neon-blue font-mono">${payment.amount}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 capitalize">{payment.method}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">{new Date(payment.created_at).toLocaleString()}</td>
                             </tr>
                         ))}
                     </tbody>

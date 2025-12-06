@@ -45,7 +45,7 @@ export default function RequestsPage() {
     return (
         <div className="space-y-6">
             <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-gray-900">Customer Requests</h2>
+                <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Customer Requests</h2>
                 <Link href="/requests/new">
                     <Button>New Request</Button>
                 </Link>
@@ -53,33 +53,33 @@ export default function RequestsPage() {
 
             <div className="grid gap-4">
                 {requests.map((req) => (
-                    <Card key={req.id} className="flex justify-between items-center">
+                    <Card key={req.id} className="flex justify-between items-center hover:bg-white/5 transition-colors border-white/5">
                         <div>
-                            <h3 className="font-medium text-lg">{req.customer_name}</h3>
-                            <p className="text-gray-500">Table: {req.table_number || 'N/A'}</p>
+                            <h3 className="font-bold text-lg text-white">{req.customer_name}</h3>
+                            <p className="text-gray-400">Table: {req.table_number || 'N/A'}</p>
                             <div className="mt-2">
                                 {req.items && Array.isArray(req.items) && req.items.map((item: any, idx: number) => (
-                                    <span key={idx} className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                                    <span key={idx} className="inline-block bg-white/10 rounded-full px-3 py-1 text-sm font-semibold text-neon-blue mr-2 mb-2 border border-neon-blue/20">
                                         {item.name} (x{item.quantity})
                                     </span>
                                 ))}
                             </div>
                         </div>
                         <div className="text-right">
-                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize
-                ${req.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                                    req.status === 'accepted' ? 'bg-blue-100 text-blue-800' :
-                                        req.status === 'delivered' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
+                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize border
+                ${req.status === 'pending' ? 'bg-yellow-100/10 text-yellow-300 border-yellow-500/30' :
+                                    req.status === 'accepted' ? 'bg-blue-100/10 text-blue-300 border-blue-500/30' :
+                                        req.status === 'delivered' ? 'bg-green-100/10 text-green-300 border-green-500/30' : 'bg-gray-100/10 text-gray-300 border-gray-500/30'}`}>
                                 {req.status}
                             </span>
-                            <p className="text-xs text-gray-400 mt-1">
+                            <p className="text-xs text-gray-500 mt-1">
                                 {new Date(req.created_at).toLocaleString()}
                             </p>
                         </div>
                     </Card>
                 ))}
                 {requests.length === 0 && (
-                    <p className="text-gray-500 text-center py-8">No requests found.</p>
+                    <p className="text-gray-500 text-center py-8 italic">No requests found.</p>
                 )}
             </div>
         </div>

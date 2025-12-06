@@ -61,31 +61,33 @@ export default function NewRequestPage() {
     };
 
     return (
-        <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">New Request</h2>
+        <div className="space-y-8">
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">
+                Place Your Order
+            </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                    <h3 className="text-lg font-medium">Menu</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                    <h3 className="text-xl font-bold text-white tracking-wide border-b border-neon-blue/30 pb-2">Menu</h3>
                     <div className="grid gap-4">
                         {inventory.map((item) => (
-                            <Card key={item.id} className="flex justify-between items-center p-4">
+                            <Card key={item.id} className="flex justify-between items-center p-4 hover:bg-white/5 transition-colors border-white/5">
                                 <div>
-                                    <h4 className="font-medium">{item.name}</h4>
-                                    <p className="text-sm text-gray-500">${item.price}</p>
+                                    <h4 className="font-bold text-lg text-white">{item.name}</h4>
+                                    <p className="text-sm text-neon-pink font-mono">${item.price}</p>
                                 </div>
-                                <Button size="sm" onClick={() => addToCart(item)} disabled={item.quantity <= 0}>
-                                    Add
+                                <Button size="sm" onClick={() => addToCart(item)} disabled={item.quantity <= 0} variant="outline">
+                                    Add +
                                 </Button>
                             </Card>
                         ))}
                     </div>
                 </div>
 
-                <div className="space-y-4">
-                    <h3 className="text-lg font-medium">Order Details</h3>
-                    <Card>
-                        <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-6">
+                    <h3 className="text-xl font-bold text-white tracking-wide border-b border-neon-pink/30 pb-2">Your Tray</h3>
+                    <Card className="border-neon-pink/20">
+                        <form onSubmit={handleSubmit} className="space-y-6">
                             <Input
                                 label="Customer Name"
                                 value={customerName}
@@ -97,27 +99,8 @@ export default function NewRequestPage() {
                                 value={tableNumber}
                                 onChange={(e) => setTableNumber(e.target.value)}
                             />
-
-                            <div className="border-t pt-4 mt-4">
-                                <h4 className="font-medium mb-2">Cart</h4>
-                                {cart.length === 0 ? (
-                                    <p className="text-gray-500 text-sm">Cart is empty</p>
-                                ) : (
-                                    <ul className="space-y-2">
-                                        {cart.map((item) => (
-                                            <li key={item.id} className="flex justify-between items-center text-sm">
-                                                <span>{item.name} x{item.quantity}</span>
-                                                <button type="button" onClick={() => removeFromCart(item.id)} className="text-red-600 hover:text-red-800">
-                                                    Remove
-                                                </button>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
-
-                            <Button type="submit" className="w-full" disabled={loading || cart.length === 0}>
-                                {loading ? 'Submitting...' : 'Submit Request'}
+                            <Button type="submit" className="w-full bg-gradient-to-r from-neon-blue to-neon-purple border-none text-white font-bold shadow-lg shadow-neon-blue/20" disabled={loading || cart.length === 0}>
+                                {loading ? 'Submitting...' : 'Send Request'}
                             </Button>
                         </form>
                     </Card>
