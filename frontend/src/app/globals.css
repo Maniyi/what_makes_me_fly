@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
+@theme {
+  --color-lounge-gold: #D4AF37;
+  --color-lounge-gold-hover: #b5952f;
+  --color-lounge-purple: #4B0082;
+  --color-lounge-purple-light: #6a0dad;
+  --color-lounge-dark: #0f0f15;
+  /* Slate-950/Zinc-950 equivalent */
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+}
+
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 10, 10, 15;
-  --background-end-rgb: 0, 0, 0;
-  
-  /* Club Theme Colors */
-  --neon-blue: #00f3ff;
-  --neon-pink: #ff00ff;
-  --neon-purple: #bd00ff;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --background: #09090b;
+  /* zinc-950 */
+  --foreground: #e2e8f0;
+  /* slate-200 */
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), ui-sans-serif, system-ui;
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+  /* Subtle gradient overlay */
+  background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #09090b 60%);
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(15, 15, 20, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 }

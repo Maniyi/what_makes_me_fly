@@ -45,41 +45,48 @@ export default function RequestsPage() {
     return (
         <div className="space-y-6">
             <div className="flex justify-between items-center">
-                <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Customer Requests</h2>
+                <h2 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-lounge-gold via-white to-lounge-purple tracking-tighter drop-shadow-lg">Customer Requests</h2>
                 <Link href="/requests/new">
                     <Button>New Request</Button>
                 </Link>
             </div>
 
-            <div className="grid gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {requests.map((req) => (
-                    <Card key={req.id} className="flex justify-between items-center hover:bg-white/5 transition-colors border-white/5">
-                        <div>
-                            <h3 className="font-bold text-lg text-white">{req.customer_name}</h3>
-                            <p className="text-gray-400">Table: {req.table_number || 'N/A'}</p>
-                            <div className="mt-2">
+                    <Card key={req.id} className="flex flex-col h-full hover:scale-[1.02] transform transition-transform" title={req.customer_name}>
+                        <div className="flex-1">
+                            <div className="flex justify-between items-start mb-4">
+                                <p className="text-gray-400 text-sm uppercase tracking-wider">Table</p>
+                                <span className="text-2xl font-light text-white">{req.table_number || '—'}</span>
+                            </div>
+
+                            <div className="space-y-2 mb-6">
                                 {req.items && Array.isArray(req.items) && req.items.map((item: any, idx: number) => (
-                                    <span key={idx} className="inline-block bg-white/10 rounded-full px-3 py-1 text-sm font-semibold text-neon-blue mr-2 mb-2 border border-neon-blue/20">
-                                        {item.name} (x{item.quantity})
-                                    </span>
+                                    <div key={idx} className="flex justify-between items-center text-sm border-b border-white/5 pb-2 last:border-0">
+                                        <span className="text-gray-300">{item.name}</span>
+                                        <span className="text-lounge-gold font-mono">x{item.quantity}</span>
+                                    </div>
                                 ))}
                             </div>
                         </div>
-                        <div className="text-right">
-                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize border
-                ${req.status === 'pending' ? 'bg-yellow-100/10 text-yellow-300 border-yellow-500/30' :
-                                    req.status === 'accepted' ? 'bg-blue-100/10 text-blue-300 border-blue-500/30' :
-                                        req.status === 'delivered' ? 'bg-green-100/10 text-green-300 border-green-500/30' : 'bg-gray-100/10 text-gray-300 border-gray-500/30'}`}>
+
+                        <div className="pt-4 mt-auto border-t border-white/5 flex justify-between items-center">
+                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase border
+                ${req.status === 'pending' ? 'bg-yellow-900/20 text-yellow-500 border-yellow-500/20' :
+                                    req.status === 'accepted' ? 'bg-blue-900/20 text-blue-400 border-blue-500/20' :
+                                        req.status === 'delivered' ? 'bg-green-900/20 text-green-400 border-green-500/20' : 'bg-gray-800/50 text-gray-500 border-gray-600/20'}`}>
                                 {req.status}
                             </span>
-                            <p className="text-xs text-gray-500 mt-1">
-                                {new Date(req.created_at).toLocaleString()}
+                            <p className="text-xs text-gray-600 font-mono">
+                                {new Date(req.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </p>
                         </div>
                     </Card>
                 ))}
                 {requests.length === 0 && (
-                    <p className="text-gray-500 text-center py-8 italic">No requests found.</p>
+                    <div className="col-span-full py-12 text-center">
+                        <p className="text-gray-500 italic text-lg">No active requests</p>
+                    </div>
                 )}
             </div>
         </div>

@@ -45,7 +45,7 @@ export default function AttendantPage() {
 
     return (
         <div className="space-y-6">
-            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Attendant Tasks</h2>
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lounge-gold to-lounge-purple">Attendant Tasks</h2>
 
             <div className="grid gap-4">
                 {assignments.length === 0 ? (
@@ -58,12 +58,12 @@ export default function AttendantPage() {
                                 <p className="text-gray-400">Table: {req.table_number}</p>
                                 <div className="mt-2">
                                     {req.items && Array.isArray(req.items) && req.items.map((item: any, idx: number) => (
-                                        <span key={idx} className="inline-block bg-white/10 rounded-full px-3 py-1 text-sm font-semibold text-neon-blue mr-2 mb-2 border border-neon-blue/20">
+                                        <span key={idx} className="inline-block bg-white/10 rounded-full px-3 py-1 text-sm font-semibold text-lounge-gold mr-2 mb-2 border border-lounge-gold/20">
                                             {item.name} (x{item.quantity})
                                         </span>
                                     ))}
                                 </div>
-                                <p className="text-sm text-gray-400 mt-1">Status: <span className="font-medium capitalize text-neon-pink">{req.status}</span></p>
+                                <p className="text-sm text-gray-400 mt-1">Status: <span className="font-medium capitalize text-lounge-purple-light">{req.status}</span></p>
                             </div>
 
                             <div className="flex gap-2">

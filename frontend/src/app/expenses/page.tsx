@@ -43,9 +43,9 @@ export default function ExpensesPage() {
 
     return (
         <div className="space-y-6">
-            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Expenses</h2>
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lounge-gold to-lounge-purple">Expenses</h2>
 
-            <Card title="Log Expense" className="border-neon-pink/20">
+            <Card title="Log Expense" className="border-lounge-purple-light/20">
                 <form onSubmit={handleCreate} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
                     <Input
                         label="Description"
@@ -85,7 +85,7 @@ export default function ExpensesPage() {
                             <tr key={expense.id} className="hover:bg-white/5 transition-colors">
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{expense.description}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">{expense.category}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-neon-pink font-mono">${expense.amount}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-lounge-purple-light font-mono">${expense.amount}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">{new Date(expense.created_at).toLocaleString()}</td>
                             </tr>
                         ))}

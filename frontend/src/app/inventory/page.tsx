@@ -53,9 +53,9 @@ export default function InventoryPage() {
 
     return (
         <div className="space-y-6">
-            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Inventory Management</h2>
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lounge-gold to-lounge-purple">Inventory Management</h2>
 
-            <Card title="Add New Item" className="border-neon-blue/20">
+            <Card title="Add New Item" className="border-lounge-gold/20">
                 <form onSubmit={handleCreate} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
                     <Input
                         label="Name"

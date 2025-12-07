@@ -46,9 +46,9 @@ export default function PaymentsPage() {
 
     return (
         <div className="space-y-6">
-            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Payments</h2>
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lounge-gold to-lounge-purple">Payments</h2>
 
-            <Card title="Record Payment" className="border-neon-blue/20">
+            <Card title="Record Payment" className="border-lounge-gold/20">
                 <form onSubmit={handleCreate} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
                     <Input
                         label="Amount"
@@ -61,7 +61,7 @@ export default function PaymentsPage() {
                     <div className="w-full">
                         <label className="block text-sm font-medium text-gray-200 mb-1">Method</label>
                         <select
-                            className="flex h-10 w-full rounded-lg border border-white/20 bg-black/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                            className="flex h-10 w-full rounded-lg border border-white/20 bg-black/20 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-lounge-gold"
                             value={newPayment.method}
                             onChange={e => setNewPayment({ ...newPayment, method: e.target.value })}
                         >
@@ -94,7 +94,7 @@ export default function PaymentsPage() {
                         {payments.map((payment) => (
                             <tr key={payment.id} className="hover:bg-white/5 transition-colors">
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">#{payment.id}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-neon-blue font-mono">${payment.amount}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-lounge-gold font-mono">${payment.amount}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 capitalize">{payment.method}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">{new Date(payment.created_at).toLocaleString()}</td>
                             </tr>

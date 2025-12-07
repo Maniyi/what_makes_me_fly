@@ -15,10 +15,10 @@ export const Button: React.FC<ButtonProps> = ({
     const baseStyles = "inline-flex items-center justify-center rounded-lg font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-95";
 
     const variants = {
-        primary: "bg-cyan-500 hover:bg-cyan-400 text-black shadow-[0_0_15px_rgba(6,182,212,0.5)] border border-cyan-400/50",
-        secondary: "bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm border border-white/10",
-        danger: "bg-pink-600 hover:bg-pink-500 text-white shadow-[0_0_15px_rgba(236,72,153,0.5)] border border-pink-500/50",
-        outline: "border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10"
+        primary: "bg-lounge-gold hover:bg-lounge-gold-hover text-black shadow-[0_0_20px_rgba(212,175,55,0.3)] border border-lounge-gold/50",
+        secondary: "bg-white/5 hover:bg-white/10 text-lounge-gold backdrop-blur-sm border border-lounge-gold/20",
+        danger: "bg-red-900/80 hover:bg-red-800 text-white shadow-[0_0_15px_rgba(220,38,38,0.3)] border border-red-500/30",
+        outline: "border border-lounge-gold/50 text-lounge-gold hover:bg-lounge-gold/10"
     };
 
     const sizes = {
